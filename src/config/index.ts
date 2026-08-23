@@ -7,6 +7,8 @@ export class Config {
   public static ENV: string = process.env.ENV || '';
   public static JWT_SECRET: string = process.env.JWT_SECRET || '';
   public static JWT_REFRESH_SECRET: string = process.env.JWT_REFRESH_SECRET || '';
+  public static JWT_ACCESS_EXPIRY: string = process.env.JWT_ACCESS_EXPIRY || '15m';
+  public static JWT_REFRESH_EXPIRY: string = process.env.JWT_REFRESH_EXPIRY || '7d';
   public static MONGO_DB_URI: string = process.env.MONGO_DB_URI || '';
   public static AWS_ACCESS_KEY_ID: string = process.env.AWS_ACCESS_KEY_ID || '';
   public static AWS_REGION: string = process.env.AWS_REGION || '';

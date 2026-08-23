@@ -28,7 +28,6 @@ pnpm-debug.log*
 Thumbs.db
 
 # Optional: Ignore package-lock.json if using yarn or pnpm
-package-lock.json
 yarn.lock
 pnpm-lock.yaml
 
