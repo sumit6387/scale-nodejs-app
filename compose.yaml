@@ -1,0 +1,59 @@
+services:
+
+  api:
+    build:
+      context: .
+      target: builder
+
+    container_name: user-api
+
+    ports:
+      - "3000:3000"
+
+    env_file:
+      - .env
+
+    volumes:
+      - ./src:/app/src
+      - ./tsconfig.json:/app/tsconfig.json
+
+    command: npm run dev
+
+    depends_on:
+      mongodb:
+        condition: service_healthy
+
+    restart: unless-stopped
+
+
+  mongodb:
+    image: mongo:8
+
+    container_name: user-mongodb
+
+    ports:
+      - "27017:27017"
+
+    environment:
+      MONGO_INITDB_DATABASE: users_db
+
+    volumes:
+      - mongodb_data:/data/db
+
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "mongosh",
+          "--eval",
+          "db.adminCommand('ping')"
+        ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+    restart: unless-stopped
+
+
+volumes:
+  mongodb_data:

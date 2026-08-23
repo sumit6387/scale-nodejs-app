@@ -6,7 +6,6 @@ export interface IUser extends Document {
   profilePicture: string;
   userType?: 'user' | 'admin' | 'chaperone';
   phoneNumber?: string;
-  authId: string;
   password: string;
   createdAt?: Date;
   updatedAt?: Date;
@@ -20,12 +19,11 @@ export interface IUser extends Document {
 const UserSchema = new Schema<IUser>(
   {
     name: { type: String, required: false },
-    email: { type: String, required: false },
+    email: { type: String, required: true, unique: true },
     phoneNumber: { type: String, required: false },
     userType: { type: String, required: false, default: 'user' },
     profilePicture: { type: String, required: false },
-    password: { type: String, required: false },
-    authId: { type: String, required: false },
+    password: { type: String, required: true, select: false },
     deletedAt: { type: Date, required: false },
     lastSeen: { type: Date, default: Date.now() },
     isDeleted: { type: Boolean, default: false },
@@ -37,8 +35,6 @@ const UserSchema = new Schema<IUser>(
   }
 );
 
-UserSchema.index({ authId: 1 });
-UserSchema.index({ email: 1 });
 UserSchema.index({ phoneNumber: 1 });
 
 export const User = mongoose.model<IUser>('User', UserSchema);

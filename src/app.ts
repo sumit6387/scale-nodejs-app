@@ -44,6 +44,11 @@ class App {
         data: null,
       });
     });
+    this.app.get("/health", (req: Request, res: Response) => {
+      res.json({
+        status: "ok"
+      });
+    });
     // user routes
     this.app.use(`${Config.USER_PREFIX}/auth`, new userRoutes.AuthRoute().router);
 
