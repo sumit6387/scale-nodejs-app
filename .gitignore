@@ -1,0 +1,38 @@
+# Node modules
+node_modules/
+
+# TypeScript build output
+dist/
+build/
+
+# Local environment files
+.env
+.env.local
+.env.*.local
+
+# Logs & Debug files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# IDE & Editor settings
+.vscode/
+.idea/
+*.swp
+*.swo
+*.sublime-workspace
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Optional: Ignore package-lock.json if using yarn or pnpm
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Jest & Coverage reports
+coverage/
+jest.config.js
+jest.config.ts
