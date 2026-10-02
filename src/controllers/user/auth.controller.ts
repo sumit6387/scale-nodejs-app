@@ -75,6 +75,14 @@ export class AuthController {
         return;
       }
 
+      if (!user.password) {
+        ResponseHandler.error(res, {
+          msg: 'Invalid email or password',
+          statusCode: 401,
+        });
+        return;
+      }
+
       const isPasswordValid = await bcrypt.compare(password, user.password);
       if (!isPasswordValid) {
         ResponseHandler.error(res, {

@@ -51,6 +51,7 @@ class App {
     });
     // user routes
     this.app.use(`${Config.USER_PREFIX}/auth`, new userRoutes.AuthRoute().router);
+    this.app.use(`${Config.USER_PREFIX}`, new userRoutes.UserRoute().router);
 
     // admin routes
   }

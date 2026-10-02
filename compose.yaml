@@ -13,8 +13,14 @@ services:
     env_file:
       - .env
 
+    environment:
+      # Overrides .env's host-oriented URI: inside the compose network the
+      # Mongo container is reachable by its service name, not 127.0.0.1.
+      MONGO_DB_URI: mongodb://mongodb:27017/scale-nodejs-application
+
     volumes:
       - ./src:/app/src
+      - ./scripts:/app/scripts
       - ./tsconfig.json:/app/tsconfig.json
 
     command: npm run dev
